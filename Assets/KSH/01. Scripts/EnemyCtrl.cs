@@ -78,14 +78,14 @@ public class EnemyCtrl : MonoBehaviour
             float distance = Vector3.Distance(targetTr.transform.position, agent.transform.position);
 
             // 추적 사정거리로 들어왔는지 확인한다
-            if (distance <= traceDistance)
-            {
-                state = State.Move;
-            }
-            // 공격 사정거리로 들어왔는지 확인한다
-            else if (distance <= attackDistance)
+            if (distance <= attackDistance)
             {
                 state = State.Attack;
+            }
+            // 공격 사정거리로 들어왔는지 확인한다
+            else if (distance <= traceDistance)
+            {
+                state = State.Move;
             }
             // 그렇지 않다면 대기
             else
