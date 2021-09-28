@@ -20,7 +20,7 @@ public class PlayerFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trFirePos = Camera.main.transform;
+        //trFirePos = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -28,6 +28,8 @@ public class PlayerFire : MonoBehaviour
     {
         Vector2 stickpos = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
         print(stickpos.x + " , " + stickpos.y);
+
+        #region Bullet관련
 
         ////마우스 왼쪽 버튼을 누르면 총알을 발사하고 싶다. 
         ////1.만약에 마우스 오른쪽 버튼을 누르면
@@ -45,8 +47,9 @@ public class PlayerFire : MonoBehaviour
         //마우스 오른쪽 버튼을 누르면 시선이 바라보는 방향으로 총을 발사하고 싶다. 
         // 마우스 오른쪽 버튼을 입력받는다. 
 
+        #endregion
 
-        if (Input.GetButtonDown("Fire1")  || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        if (Input.GetButtonDown("Fire1")  || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
             FireRay();
         }
@@ -71,6 +74,8 @@ public class PlayerFire : MonoBehaviour
             //7.2초뒤에 파괴하자. 
             Destroy(fragment, 2);
 
+            #region enemy관련
+
             //8. 만약에 맞은 놈이 Drone 이라면 
             //if (hit.transform.name.Contains("Enemy"))
             //{
@@ -79,9 +84,12 @@ public class PlayerFire : MonoBehaviour
             //}
 
 
+            #endregion
         }
 
     }
+
+    #region fireBullet
 
     //void FireBullet()
     //{
@@ -92,4 +100,5 @@ public class PlayerFire : MonoBehaviour
     //    //4. 만들어진 총알의 앞방향을 총구의 앞방향으로 한다. 
     //    bullet.transform.forward = trFirePos.forward;
     //}
+    #endregion
 }

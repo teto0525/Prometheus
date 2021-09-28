@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class HandController : MonoBehaviour {
 
+	public OVRInput.Controller Hand;
     private Animator animator;
 
 	void Start () {
@@ -10,6 +12,6 @@ public class HandController : MonoBehaviour {
 	}
 	
 	void Update () {
-        animator.SetBool("isGrabbing", Input.GetKey(KeyCode.F));
+       animator.SetBool("isGrabbing", OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, Hand));
 	}
 }

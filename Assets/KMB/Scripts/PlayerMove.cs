@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerMove : MonoBehaviour
 {
+    //Player 체력 변수 
+    public int hp = 20;
+
+    //최대 체력변수
+    int maxHP = 20;
+
+    //hp 슬라이더 변수 
+    public Slider hpSlider;
+
     public float moveSpeed = 7f;
     //캐릭터 콘트롤러 변수 
     CharacterController cc;
@@ -74,5 +85,7 @@ public class PlayerMove : MonoBehaviour
         //3. 이동속도에 맞춰 이동한다. 
         cc.Move(dir * moveSpeed * Time.deltaTime);
 
+        //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
+        hpSlider.value = (float)hp / (float)maxHP;
     }
 }
