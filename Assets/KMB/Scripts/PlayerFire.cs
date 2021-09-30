@@ -8,14 +8,15 @@ public class PlayerFire : MonoBehaviour
     //총알공장
     public GameObject bulletFactory;
     //총구
-    public Transform trFirePos;
+    public Transform trRFirePos;
 
     public GameObject fragmentFactory;
 
     //왼손 Transform.
     public Transform trLeft;
 
-    
+    //오른손 Transform.
+    public Transform trRight;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,12 @@ public class PlayerFire : MonoBehaviour
 
         #region Bullet관련
 
-        ////마우스 왼쪽 버튼을 누르면 총알을 발사하고 싶다. 
-        ////1.만약에 마우스 오른쪽 버튼을 누르면
-        //if (Input.GetButtonDown("Fire1")) //|| OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+        //마우스 왼쪽 버튼을 누르면 총알을 발사하고 싶다. 
+        //1.만약에 마우스 오른쪽 버튼을 누르면
+        //if (Input.GetButtonDown("Fire1")) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
 
         //{
-        //    FireBullet();
+           
         //}
 
         //마우스 오른쪽 버튼을 누르면 Ray를 활용해서
@@ -51,15 +52,16 @@ public class PlayerFire : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1")  || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
-            FireRay();
+            FireRay(); 
+            FireBullet();
         }
     }
-
 
     void FireRay()
     {
         //2. 카메라 위치, 카메라 앞방향으로 나가는 Ray를 만든다.
-        Ray ray = new Ray(trFirePos.position, trFirePos.forward);
+        Ray ray = new Ray(trRFirePos.position, trRFirePos.forward );
+        
         //3. 만약에 Ray를 발사해서 어딘가에 부딪혔다면
         RaycastHit hit;
 
@@ -91,14 +93,14 @@ public class PlayerFire : MonoBehaviour
 
     #region fireBullet
 
-    //void FireBullet()
-    //{
-    //    //2. 총알 공장에서 총알을 만든다.
-    //    GameObject bullet = Instantiate(bulletFactory);
-    //    //3. 만들어진 총알을 총구에 놓는다. 
-    //    bullet.transform.position = trFirePos.position;
-    //    //4. 만들어진 총알의 앞방향을 총구의 앞방향으로 한다. 
-    //    bullet.transform.forward = trFirePos.forward;
-    //}
+    void FireBullet()
+    {
+        //2. 총알 공장에서 총알을 만든다.
+        GameObject bullet = Instantiate(bulletFactory);
+        //3. 만들어진 총알을 총구에 놓는다. 
+        bullet.transform.position = trRight.position;
+        //4. 만들어진 총알의 앞방향을 총구의 앞방향으로 한다. 
+        bullet.transform.forward = trRight.forward;
+    }
     #endregion
 }
