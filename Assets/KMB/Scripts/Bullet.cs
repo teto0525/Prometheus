@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public float speed = 5;
 
     //폭발 효과 공장 
-    public GameObject exploFactory;
+    //public GameObject exploFactory;
 
     Vector3 dir; 
 
@@ -29,11 +29,11 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //1. 폭발효과 공장에서 폭발 효과를 만든다. 
-        GameObject explo = Instantiate(exploFactory);
+       //GameObject explo = Instantiate(exploFactory);
         //2. 만든 효과를 나(bullet)의 위치에 놓는다. 
-        explo.transform.position = transform.position;
+       // explo.transform.position = transform.position;
         //3. 3초 뒤에 만든 효과를 없앤다. 
-        Destroy(explo, 3);
+        //Destroy(explo, 3);
         //4. 나를 없앤다. 
         Destroy(gameObject);
     }
