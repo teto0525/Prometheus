@@ -64,6 +64,7 @@ public class EnemyCtrl : MonoBehaviour
         StartCoroutine(ActionState());
     }
 
+    
     // 추적 시작할 거리
     public float traceDistance = 5;
     // 공격 시작할 거리
@@ -148,7 +149,7 @@ public class EnemyCtrl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("BULLET"))
         {
             // 충돌 총알 삭제
             Destroy(other.gameObject);
