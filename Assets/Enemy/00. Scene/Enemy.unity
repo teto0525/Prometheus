@@ -4991,23 +4991,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 939335178, guid: 29f393efdc386ee41aee6077912722cf, type: 3}
   m_PrefabInstance: {fileID: 1431664072}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &154666402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154666401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b791aee1df2c521469028fc72aac7873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HitEffect: {fileID: 0}
-  HitOffset: 0
-  MaxLength: 0
-  MainTextureLength: 1
-  NoiseTextureLength: 1
 --- !u!114 &154666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,7 +5027,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154666401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -14174,6 +14157,10 @@ PrefabInstance:
     - target: {fileID: 9049301992259249166, guid: 0a12fd6878513ed4dbd6d4f114e66ed4, type: 3}
       propertyPath: m_Name
       value: Robot Kyle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049301992259249166, guid: 0a12fd6878513ed4dbd6d4f114e66ed4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a12fd6878513ed4dbd6d4f114e66ed4, type: 3}
@@ -27621,7 +27608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bcb6e3e3f3035848ba151c84637a068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mr: {fileID: 0}
+  mr: {fileID: 833651158}
 --- !u!1001 &871037929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47848,6 +47835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 939335178, guid: 29f393efdc386ee41aee6077912722cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 939335179, guid: 29f393efdc386ee41aee6077912722cf, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -58431,6 +58422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 20
   hpSlider: {fileID: 410092293}
+  hiteffect: {fileID: 0}
   moveSpeed: 5
   jumpPower: 6
   isJumping: 0

@@ -33,8 +33,7 @@ public class EnemyCtrl : MonoBehaviour
     RaycastHit hit;
     // HP
     public int Hp = 100;
-    float dissolvePower = 0;
-    public SkinnedMeshRenderer mr;
+    private Dissolve DissolveScript;
     // 죽음, 공격선언
     bool isAttack = false;
     bool isDie = false;
@@ -54,8 +53,6 @@ public class EnemyCtrl : MonoBehaviour
         enemyTr = GetComponent<Transform>();
         targetTr = GameObject.FindWithTag("Player")?.GetComponent<Transform>();
 
-        // 피격효과
-        // hitEffect = 
 
         // 상태머신 체크
         StartCoroutine(CheckState());
@@ -144,12 +141,13 @@ public class EnemyCtrl : MonoBehaviour
                     agent.isStopped = true;
                     // 사망 애니메이션 실행
                     anim.SetTrigger("Die");
-                    // 디졸브
-                    dissolvePower += Time.deltaTime * 0.3f;
-                    if (dissolvePower > 1) dissolvePower = 0;
-                    mr.material.SetFloat("_Dp", dissolvePower);
-                    // 적 없애기
-                    Destroy(gameObject, 2.5f);
+
+                    GetComponent<Dissolve>().Show();
+
+                    //// 디졸브
+                    //DissolveScript.gameObject.SetActive(true);
+                    //// 적 없애기
+                    //Destroy(gameObject, 2.5f);
                     break;
             }
 
@@ -158,7 +156,7 @@ public class EnemyCtrl : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision coll)
+    private void OnTriggerEnter(Collider coll)
     {
         // 초능력 피격
         RaycastHit hit;
@@ -173,7 +171,7 @@ public class EnemyCtrl : MonoBehaviour
         }
 
         // 총구 피격
-        if (coll.collider.CompareTag("BULLET"))
+        if (coll.CompareTag("BULLET"))
         {
 
             // 충돌 총알 삭제
@@ -183,11 +181,11 @@ public class EnemyCtrl : MonoBehaviour
 
             ///// 피격 이펙트 실행 /////
             // 총알의 충돌 지점
-            Vector3 pos = coll.GetContact(0).point;
-            // 충돌지점에서 이펙트 실행하기
-            Quaternion rot = Quaternion.LookRotation(-coll.GetContact(0).normal);
-            GameObject sparks = Instantiate<GameObject>(hitEffect, pos, rot, enemyTr);
-            Destroy(sparks, 0.3f);
+            //Vector3 pos = coll.GetContact(0).point;
+            //// 충돌지점에서 이펙트 실행하기
+            //Quaternion rot = Quaternion.LookRotation(-coll.GetContact(0).normal);
+            //GameObject sparks = Instantiate<GameObject>(hitEffect, pos, rot, enemyTr);
+            //Destroy(sparks, 0.3f);
 
             // hp 구현
             Hp -= 10;

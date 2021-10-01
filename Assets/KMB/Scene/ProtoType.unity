@@ -5221,6 +5221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b791aee1df2c521469028fc72aac7873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitEffect: {fileID: 0}
+  HitOffset: 0
+  MaxLength: 0
+  MainTextureLength: 1
+  NoiseTextureLength: 1
 --- !u!114 &154666403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5238,9 +5243,9 @@ MonoBehaviour:
   rotSpeed: 2
   useLaser: 0
   Firepos: {fileID: 1690287507}
+  prefabs: {fileID: 0}
+  MaxLength: 0
   lineRenderer: {fileID: 154666404}
-  lineVfx: []
-  impatctVfx: {fileID: 727819388}
   RamdomhitSparks:
   - {fileID: 93351659}
   - {fileID: 1135670223}
@@ -7132,8 +7137,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2301145, y: 2.676197, z: 1.738476}
-  m_Center: {x: -0.071520686, y: 0.8381025, z: -0.36923814}
+  m_Size: {x: 2.8330178, y: 2.3502934, z: 2.9100003}
+  m_Center: {x: 0.1815065, y: 1.1676229, z: 0.6000001}
 --- !u!4 &201983337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -24161,11 +24166,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726836612}
   m_Mesh: {fileID: 4300000, guid: 944bf22c1da493b4bb9c7bc2eb808fb0, type: 3}
---- !u!198 &727819388 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800004, guid: 2f7910242354c78419d50ac9e64b496f, type: 3}
-  m_PrefabInstance: {fileID: 486922210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &727819390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 2f7910242354c78419d50ac9e64b496f, type: 3}
@@ -40136,8 +40136,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0666275, y: 2.676197, z: 1.9767342}
-  m_Center: {x: 0.010222673, y: 0.8381026, z: 0.0114609}
+  m_Size: {x: 2.8330178, y: 2.3502934, z: 2.9100003}
+  m_Center: {x: 0.1815065, y: 1.1676229, z: 0.6000001}
 --- !u!1 &1158163904
 GameObject:
   m_ObjectHideFlags: 0
@@ -56571,9 +56571,9 @@ MonoBehaviour:
   rotSpeed: 2
   useLaser: 0
   Firepos: {fileID: 913181993}
+  prefabs: {fileID: 0}
+  MaxLength: 0
   lineRenderer: {fileID: 1654893796}
-  lineVfx: []
-  impatctVfx: {fileID: 1902981161}
   RamdomhitSparks:
   - {fileID: 1224481841}
   - {fileID: 1577305997}
@@ -56706,6 +56706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b791aee1df2c521469028fc72aac7873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitEffect: {fileID: 0}
+  HitOffset: 0
+  MaxLength: 0
+  MainTextureLength: 1
+  NoiseTextureLength: 1
 --- !u!1001 &1664500429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64477,11 +64482,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!198 &1902981161 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800004, guid: 2f7910242354c78419d50ac9e64b496f, type: 3}
-  m_PrefabInstance: {fileID: 967764107}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1903380583
 PrefabInstance:
   m_ObjectHideFlags: 0
