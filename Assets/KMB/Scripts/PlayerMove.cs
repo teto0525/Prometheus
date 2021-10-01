@@ -6,16 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    private bool m_ladder, m_air;
 
-    private void start()
-    {
-        m_ladder = false;
-        m_air = false;
-    }
 
     //Player 체력 변수 
-    public int hp = 100;
+    public int hp;
 
     //최대 체력변수
     int maxHP = 100;
@@ -41,9 +35,16 @@ public class PlayerMove : MonoBehaviour
     //점프력 상태 변수 
     public bool isJumping = false;
 
-    public void DamangeAction(int damage)
+    private void OnTriggerEnter(Collider other)
     {
-        hp -= damage;
+        if (other.CompareTag("Enemy"))
+            DamangeAction();
+    }
+
+    public void DamangeAction()
+    {
+
+        hp -= 10;
         if (hp > 0)
         {
             StartCoroutine(PlayHitEffect());
@@ -62,6 +63,9 @@ public class PlayerMove : MonoBehaviour
     {
         //캐릭터 콘트롤러 컴포넌트를 받아오기
         cc = GetComponent<CharacterController>();
+
+        // hp 초기화
+        hp = maxHP;
     }
 
     // Update is called once per frame
@@ -113,65 +117,7 @@ public class PlayerMove : MonoBehaviour
 
         //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
-
-        if (m_ladder)
-        {
-            bool upKey = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.J);
-            bool downkey = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.K);
-
-            //만약에 올라가는 키를 누르면
-            if (upKey)
-            {
-                this.transform.Translate(0, moveSpeed * Time.deltaTime, 0);
-            }
-            else if (downkey)
-            {
-                this.transform.Translate(0, 0, -moveSpeed * Time.deltaTime);
-            }
-
-        }
-    }
-    void OnTriggerEnter(Collider Get)
-    {
-        if (Get.transform.tag == "Ladder-bottom")
-        {
-            if (!m_ladder)
-            {
-                m_ladder = true;
-                this.transform.Translate(0, 0.5f, 0);
-            }
-        }
-        else if (Get.transform.tag == "Ladder-air")
-        {
-            if (m_ladder)
-            {
-                m_ladder = false;
-                m_air = true;
-            }
-        }
-        else if (Get.transform.tag == "Ladder-top")
-        {
-            if (!m_ladder)
-            {
-                m_ladder = true;
-
-                this.transform.Translate(0, -0.5f, 0);
-            }
-        }
-        else if (Get.transform.tag == "Ladder-floor")
-        {
-            if (m_ladder)
-            {
-                m_ladder = false;
-            }
-        }
     }
 
-    void OnTriggerExit(Collider Get)
-    {
-        if (Get.transform.tag == "Ladder-air")
-        {
-            m_air = false;
-        }
-    }
 }
+       

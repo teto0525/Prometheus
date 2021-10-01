@@ -78,7 +78,7 @@ public class PlayerFire : MonoBehaviour
 
             #region enemy관련
 
-            //8. 만약에 맞은 놈이 Drone 이라면 
+            ////8.만약에 맞은 놈이 Drone 이라면
             //if (hit.transform.name.Contains("Enemy"))
             //{
             //    //9. 파괴해라.

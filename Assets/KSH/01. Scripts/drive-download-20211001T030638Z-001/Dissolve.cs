@@ -20,7 +20,7 @@ public class Dissolve : MonoBehaviour
         if (showDissolve == false) return;
         mr.material.SetFloat("_Dp", dissolvePower);
 
-        dissolvePower += Time.deltaTime * 0.1f;
+        dissolvePower += Time.deltaTime * 0.3f;
         if (dissolvePower > 1)
         {
             Destroy(gameObject);
