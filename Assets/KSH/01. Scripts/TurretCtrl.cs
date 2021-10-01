@@ -25,9 +25,15 @@ public class TurretCtrl : MonoBehaviour
     [Header("Use Laser")]
     public bool useLaser = false;
     public Transform Firepos;
+    public GameObject prefabs;
+    public float MaxLength;
+    private Ray ray;
+    private Vector3 direction;
+    private Quaternion rotation;
+    private EGA_Laser LaserScript;
     public LineRenderer lineRenderer;
-    public ParticleSystem[] lineVfx;
-    public ParticleSystem impatctVfx;
+    //public ParticleSystem[] lineVfx;
+    //public ParticleSystem impatctVfx;
 
     /* 이펙트 */
     [Tooltip("Random Damage Effect")]
@@ -51,6 +57,10 @@ public class TurretCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         target = GameObject.FindWithTag("Player")?.GetComponent<Transform>();
+
+        // 레이저 스크립트 활성화
+        LaserScript = Instantiate(prefabs).GetComponent<EGA_Laser>();
+        LaserScript.gameObject.SetActive(false);
     }
 
 
@@ -134,6 +144,7 @@ public class TurretCtrl : MonoBehaviour
         {
             Instantiate(exploVFX, transform.position, Quaternion.identity);
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            LaserScript.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
@@ -141,20 +152,25 @@ public class TurretCtrl : MonoBehaviour
     /* 레이저 공격 */
     void Laser()
     {
-        if (!lineRenderer.enabled)
-        {
-            lineRenderer.enabled = true;
-            lineVfx[0].Play();
+        //if (!lineRenderer.enabled)
+        //{
+        //    lineRenderer.enabled = true;
+        //    //lineVfx[0].Play();
+        //}
 
-        }
-        // 시작은 FirePos
-        lineRenderer.SetPosition(0, Firepos.position);
-        //끝은 타겟
-        lineRenderer.SetPosition(1, target.position);
+        // 레이저 스크립트 활성화
+        //LaserScript = Instantiate(prefabs, Firepos.transform.position, Firepos.transform.rotation).GetComponent<EGA_Laser>();
+        LaserScript.gameObject.SetActive(true);
+        LaserScript.transform.position = Firepos.transform.position;
+        LaserScript.transform.rotation = Firepos.transform.rotation;
+        //// 시작은 FirePos
+        //lineRenderer.SetPosition(0, Firepos.position);
+        ////끝은 타겟
+        //lineRenderer.SetPosition(1, target.position);
 
         Vector3 dir = Firepos.position - target.position;
-        impatctVfx.transform.position = target.position + dir.normalized;
-        impatctVfx.transform.rotation = Quaternion.LookRotation(dir);
+        //impatctVfx.transform.position = target.position + dir.normalized;
+        //mpatctVfx.transform.rotation = Quaternion.LookRotation(dir);
 
 
     }
@@ -163,7 +179,7 @@ public class TurretCtrl : MonoBehaviour
     void OnLostTarget()
     {
         OnDectVfx[0].Stop();
-
+        LaserScript.gameObject.SetActive(false);
         TimeLostDetection = Time.time;
     }
 

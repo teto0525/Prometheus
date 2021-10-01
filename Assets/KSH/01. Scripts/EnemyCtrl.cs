@@ -32,13 +32,14 @@ public class EnemyCtrl : MonoBehaviour
     //RayCast 
     RaycastHit hit;
     // HP
-    public int maxHp = 100;
-    public int currHp;
+    public int Hp = 100;
+    float dissolvePower = 0;
+    public SkinnedMeshRenderer mr;
     // 죽음, 공격선언
     bool isAttack = false;
     bool isDie = false;
     // 피격
-    private GameObject hitEffect;
+    public GameObject hitEffect;
 
 
     // Start is called before the first frame update
@@ -52,9 +53,6 @@ public class EnemyCtrl : MonoBehaviour
         // 위치 할당
         enemyTr = GetComponent<Transform>();
         targetTr = GameObject.FindWithTag("Player")?.GetComponent<Transform>();
-
-        // 현 hp 초기화
-        currHp = maxHp;
 
         // 피격효과
         // hitEffect = 
@@ -71,9 +69,13 @@ public class EnemyCtrl : MonoBehaviour
     public float attackDistance = 2;
     IEnumerator CheckState()
     {
+
         while (!isDie) //안 죽었다면
         {
             yield return new WaitForSeconds(0.3f);
+
+            // 죽었다면 코루틴을 종료한다
+            if (state == State.Death) yield break;
 
             // target과 enemy 사이의 거리를 측정한다
             float distance = Vector3.Distance(targetTr.transform.position, agent.transform.position);
@@ -138,7 +140,16 @@ public class EnemyCtrl : MonoBehaviour
                 /////Death//////
                 case State.Death:
                     isDie = true;
-
+                    // 추적 정지
+                    agent.isStopped = true;
+                    // 사망 애니메이션 실행
+                    anim.SetTrigger("Die");
+                    // 디졸브
+                    dissolvePower += Time.deltaTime * 0.3f;
+                    if (dissolvePower > 1) dissolvePower = 0;
+                    mr.material.SetFloat("_Dp", dissolvePower);
+                    // 적 없애기
+                    Destroy(gameObject, 2.5f);
                     break;
             }
 
@@ -147,17 +158,66 @@ public class EnemyCtrl : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision coll)
     {
-        if (other.CompareTag("BULLET"))
+        // 초능력 피격
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
+            // hp 구현
+            Hp -= 40;
+            if (Hp <= 0)
+            {
+                state = State.Death;
+            }
+        }
+
+        // 총구 피격
+        if (coll.collider.CompareTag("BULLET"))
+        {
+
             // 충돌 총알 삭제
-            Destroy(other.gameObject);
+            Destroy(coll.gameObject);
             // 피격 액션
             anim.SetTrigger("Hit");
+
+            ///// 피격 이펙트 실행 /////
+            // 총알의 충돌 지점
+            Vector3 pos = coll.GetContact(0).point;
+            // 충돌지점에서 이펙트 실행하기
+            Quaternion rot = Quaternion.LookRotation(-coll.GetContact(0).normal);
+            GameObject sparks = Instantiate<GameObject>(hitEffect, pos, rot, enemyTr);
+            Destroy(sparks, 0.3f);
+
+            // hp 구현
+            Hp -= 10;
+
+            // 사망처리
+            if (Hp <= 0)
+            {
+                state = State.Death;
+            }
+
         }
+
     }
 
 
+    /* 공격 사정거리 표시*/
+    private void OnDrawGizmos()
+    {
+        // 추적 사정거리 표시
+        if(state == State.Move)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, traceDistance);
+        }
+        // 공격 사정거리 표시
+        if(state == State.Attack)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackDistance);
+        }
+    }
 
 }
