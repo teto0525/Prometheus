@@ -59,7 +59,16 @@ public class EnemyCtrl : MonoBehaviour
         StartCoroutine(ActionState());
     }
 
-    
+    private void Update()
+    {
+        //게임 상태가 '게임중' 상태일 대만 조작할 수 있게 한다. 
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
+    }
+
+
     // 추적 시작할 거리
     public float traceDistance = 5;
     // 공격 시작할 거리
@@ -217,5 +226,28 @@ public class EnemyCtrl : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, attackDistance);
         }
     }
+
+    //float currentTime;
+    //public int attackPower = 3;
+    //float attackDelay;
+    //Transform player;
+
+    //void Attack()
+    //{
+    // //만일 플레이어가 공격 범위 이내에 있다면 플레이어를 공격한다.
+    // if(Vector3.Distance(transform.position, player.position) < attackDistance)
+    //    {
+    //        //일정시간마다 플레이어를 공격한다. 
+    //        currentTime += Time.deltaTime;
+
+    //        if (currentTime > attackDelay)
+    //        {
+    //            player.GetComponent<PlayerMove>().DamangeAction(attackPower);
+    //            print("공격");
+    //            currentTime = 0; 
+    //        }
+    //    }
+
+    //}
 
 }

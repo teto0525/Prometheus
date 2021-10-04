@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
 
+    private Vector3 moveDirection = Vector3.zero;
 
     //Player 체력 변수 
-    public int hp;
+    public int hp = 100;
 
     //최대 체력변수
     int maxHP = 100;
@@ -35,16 +36,9 @@ public class PlayerMove : MonoBehaviour
     //점프력 상태 변수 
     public bool isJumping = false;
 
-    private void OnTriggerEnter(Collider other)
+    public void DamangeAction(int damage)
     {
-        if (other.CompareTag("Enemy"))
-            DamangeAction();
-    }
-
-    public void DamangeAction()
-    {
-
-        hp -= 10;
+        hp -= damage;
         if (hp > 0)
         {
             StartCoroutine(PlayHitEffect());
@@ -58,19 +52,32 @@ public class PlayerMove : MonoBehaviour
         hiteffect.SetActive(false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.tag == "AttackPoint")
+        {
+            DamangeAction(5);
+            print(hp);
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         //캐릭터 콘트롤러 컴포넌트를 받아오기
         cc = GetComponent<CharacterController>();
-
-        // hp 초기화
-        hp = maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.gm.gState != GameManager.GameState.Run)
+        {
+            return;
+        }
+
         //WASD키를 누르면 입력하면 캐릭터를 그 방향으로 이동시키고 싶다. 
         //[space]키를 누르면 캐릭터를 수직으로 점프시키고 싶다. 
 
@@ -117,7 +124,6 @@ public class PlayerMove : MonoBehaviour
 
         //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
-    }
 
+    } 
 }
-       
