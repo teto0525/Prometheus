@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
     public enum SFX
     {
         EnemyDetection,
+        TurretExplo,
         EnemyAttack
     }
 

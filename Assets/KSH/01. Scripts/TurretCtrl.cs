@@ -145,6 +145,7 @@ public class TurretCtrl : MonoBehaviour
             Instantiate(exploVFX, transform.position, Quaternion.identity);
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
             LaserScript.gameObject.SetActive(false);
+            SoundManager.soundManager.PlaySFX(SoundManager.SFX.TurretExplo);
             Destroy(gameObject);
         }
     }

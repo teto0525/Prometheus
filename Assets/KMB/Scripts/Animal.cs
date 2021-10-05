@@ -6,12 +6,17 @@ using UnityEngine.UI;
 
 public class Animal : MonoBehaviour /*, IPointerEnterHandler, IPointerExitHandler*/
 {
+    float currentTime;
+    float creatTime;
+
     public Image image1;
     public Image image2;
     public Image image3;
     public Image image4;
     public Image image5;
     public Image image6;
+
+    bool isActive = false;
 
     //public void OnPointerEnter(PointerEventData eventData)
     //{
@@ -29,14 +34,24 @@ public class Animal : MonoBehaviour /*, IPointerEnterHandler, IPointerExitHandle
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Capsule")
-        {
-            image1.gameObject.SetActive(true);
+        currentTime += Time.deltaTime;
+
+        if (other.tag == "Player")
+        {      
+            StartCoroutine(Image());
         }
-        else
-        {
+
+        IEnumerator Image()
+        { 
+            print("Active");
+            isActive = true;
+            image1.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(3f);
+
+            isActive = false;
             image1.gameObject.SetActive(false);
-            
         }
     }
 }
+
