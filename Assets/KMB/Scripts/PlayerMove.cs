@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour
     // 레이캐스트
     private Ray ray;
     private RaycastHit hit;
+    int layerMask = 1 << LayerMask.NameToLayer("Capsule");
 
 
     public void DamangeAction(int damage)
@@ -74,6 +75,8 @@ public class PlayerMove : MonoBehaviour
     {
         //캐릭터 콘트롤러 컴포넌트를 받아오기
         cc = GetComponent<CharacterController>();
+
+     
     }
 
     // Update is called once per frame
@@ -97,8 +100,6 @@ public class PlayerMove : MonoBehaviour
 
         //2-1 이동방향을 설정한다. 
         dir = Camera.main.transform.TransformDirection(dir);
-
-        Playerdir = dir;
 
         //2-2 만일 바닥에 착지했다면
         if (cc.collisionFlags == CollisionFlags.Below)
@@ -132,29 +133,26 @@ public class PlayerMove : MonoBehaviour
         hpSlider.value = (float)hp / (float)maxHP;
 
 
-        ///* KSH 수정사항 */
-        //if(Input.GetButtonDown("Jump") && scanObject != null)
-        //{
-        //    Debug.Log(scanObject);
-        //    manager.ShowText(scanObject);
-        //}
+        /* KSH 수정사항 */
+        if (GameManager.gm.scanObject != null)
+        {
+            ray = new Ray(transform.position, transform.forward);
+;           if (Physics.Raycast(ray, out hit, 100, layerMask))
+            {
+                GameManager.gm.ShowText(hit.transform.gameObject);
+            }
+
+        }
     }
 
     /* KSH 수정사항 */
     public GameManager manager;
-    Vector3 Playerdir;
+
 
     private void FixedUpdate()
     {
-        ////// 만약 레이 맞은 물체 레이어가 캡슐이면
-        //if (Physics.Raycast(ray, out raycas))
-        //{
-        //    if (hit.("Capsule"))
-        //    {
-
-        //    }
-        //}
-            
+        //// 만약 레이 맞은 물체 레이어가 캡슐이면
+        
     }
 
 

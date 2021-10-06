@@ -26,13 +26,15 @@ public class QuestManager : MonoBehaviour
     void Controlobject() // 퀘스트 오브젝트에 있는 오브젝트 조절
     {
         switch (questId)
+        { 
             case 10:
-            if (questActionIndex == 2)
-                questObject[0].SetActive(true);
-            break;
-        case 20:
-            if (questActionIndex == 1) // 퀘스트 진행이 1이면
-                questObject[0].SetActive(false);
+                if (questActionIndex == 2)
+                    gameObjects[0].SetActive(true);
+                break;
+            case 20:
+                if (questActionIndex == 1) // 퀘스트 진행이 1이면
+                    gameObjects[0].SetActive(false);
+                break;
         }
     }
 
@@ -43,7 +45,7 @@ public class QuestManager : MonoBehaviour
 
     public string CheckQuest(int id)
     {
-        if(id == questList[questId].animalId.Length)
+        if (id == questList[questId].animalId.Length)
         {
             NextQuest();
             Debug.Log(questId);
