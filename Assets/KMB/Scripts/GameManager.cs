@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Ready,
         Run,
-        Pause,
+        //Pause,
         GameOver
     }
 
@@ -43,30 +43,30 @@ public class GameManager : MonoBehaviour
     PlayerMove player;
 
 
-    //옵션화면 UI 오브젝트 변수
-    public GameObject gameOption;
+    ////옵션화면 UI 오브젝트 변수
+    //public GameObject gameOption;
 
     //옵션 화면 켜기
-    public void OpenOptionWindow()
-    {
-        //옵션 창을 활성화 한다. 
-        gameOption.SetActive(true);
-        //게임속도를 0배속으로 전환한다.
-        Time.timeScale = 0f;
-        //게임 상태를 일시정지 상태로 변경한다. 
-        gState = GameState.Pause;
-    }
+    //public void OpenOptionWindow()
+    //{
+    //    //옵션 창을 활성화 한다. 
+    //    gameOption.SetActive(true);
+    //    //게임속도를 0배속으로 전환한다.
+    //    Time.timeScale = 0f;
+    //    //게임 상태를 일시정지 상태로 변경한다. 
+    //    gState = GameState.Pause;
+    //}
 
     //계속하기 옵션
-    public void CloseOptionWindow()
-    {
-        //옵션창을 비활성화 한다
-        gameOption.SetActive(false);
-        //게임속도를 1배속으로 전환한다. 
-        Time.timeScale = 1f;
-        //게임상태를 게임중 상태로 변경한다.
-        gState = GameState.Run;
-    }
+    //public void CloseOptionWindow()
+    //{
+    //    //옵션창을 비활성화 한다
+    //    gameOption.SetActive(false);
+    //    //게임속도를 1배속으로 전환한다. 
+    //    Time.timeScale = 1f;
+    //    //게임상태를 게임중 상태로 변경한다.
+    //    gState = GameState.Run;
+    //}
 
     //다시하기 옵션
     public void RestartGame()
@@ -149,21 +149,20 @@ public class GameManager : MonoBehaviour
 
             //상태 텍스트를 활성화 한다 
             gameLabel.SetActive(true);
+
             //상태텍스트의 내용을 "게임오버"로 한다. 
             gameText.text = "Game Over";
-
-
 
             //상태 텍스트이 색상을 붉은 색으로 한다. 
             gameText.color = new Color32(255, 0, 0, 255);
 
 
-            btn.SetActive(true);
-            //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
-            Transform buttons = gameText.transform.GetChild(0);
+            //btn.SetActive(true);
+            ////상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
+            //Transform buttons = gameText.transform.GetChild(0);
 
-            //버튼 오브젝트를 활성화한다
-            buttons.gameObject.SetActive(true);
+            ////버튼 오브젝트를 활성화한다
+            //buttons.gameObject.SetActive(true);
 
             //마우스 활성화 함수를 실행한다.
             //Cursorlock이라는 스크립트를 불러오기
@@ -171,6 +170,7 @@ public class GameManager : MonoBehaviour
             //그 안에 있는 커서온을 실행시키기
             // cl.CursorOn();
             //상태를 '게임오버' 상태로 변경한다. 
+
             gState = GameState.GameOver;
         }
     }
