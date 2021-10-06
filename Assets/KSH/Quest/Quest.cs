@@ -1,44 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Quest
 {
-    public List<QuestEvent> questEvents = new List<QuestEvent>();
-    List<QuestEvent> pathList = new List<QuestEvent>();
+    // 플레이 중 수행해야 할 미션들
 
-    public Quest() { }
+    public string questName; // 퀘스트 이름
+    public int[] animalId; // 동물 6가지
 
-    public QuestEvent AddQuestEvent(string n, string d)
+    public Quest(string name, int[] animal)
     {
-        QuestEvent questEvent = new QuestEvent(n, d);
-        questEvents.Add(questEvent);
-        return questEvent;
-    }
-
-    public void AddPath(string fromQuestEvent, string toQuestEvent)
-    {
-        QuestEvent from = FindQuestEvent(fromQuestEvent);
-        QuestEvent to = FindQuestEvent(toQuestEvent);
-
-        if (from != null && to != null) ;
-    }
-
-    QuestEvent FindQuestEvent(string id)
-    {
-        foreach (QuestEvent n in questEvents)
-        {
-            if (n.GetId() == id)
-                return n;
-        }
-        return null;
-    }
-
-    public void PrintPath()
-    {
-        foreach (QuestEvent n in questEvents)
-        {
-            Debug.Log(n.name);
-        }
+        questName = name;
+        animalId = animal;
     }
 }

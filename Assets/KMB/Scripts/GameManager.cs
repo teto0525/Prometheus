@@ -6,6 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    /* KSH 추가내역 : 대화창 */
+    public GameObject TalkImage;
+    public GameObject scanObject; 
+
+    public void ShowText(GameObject scanObj)
+    {
+        Text TalkText = TalkImage.transform.Find("TalkText").GetComponent<Text>();
+
+        scanObject = scanObj;
+        TalkText.text = " 미션 내용 " + scanObject.name + "입니다";
+
+        TalkImage.SetActive(true);
+    }
+
+    /* KMB */
     float currTime;
 
     float createTime;

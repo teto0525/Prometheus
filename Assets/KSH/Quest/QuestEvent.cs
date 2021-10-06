@@ -32,8 +32,8 @@ public class QuestEvent
         status = es;
     }
 
-    public string GetId()
+    public void GetId()
     {
-        retrun id;
+        //retrun id;
     }
 }

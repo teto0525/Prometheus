@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 7f;
     //캐릭터 콘트롤러 변수 
     CharacterController cc;
+    Rigidbody rigid;
 
     //중력변수 
     float gravity = -20;
@@ -35,6 +36,11 @@ public class PlayerMove : MonoBehaviour
 
     //점프력 상태 변수 
     public bool isJumping = false;
+
+    // 레이캐스트
+    private Ray ray;
+    private RaycastHit hit;
+
 
     public void DamangeAction(int damage)
     {
@@ -92,7 +98,7 @@ public class PlayerMove : MonoBehaviour
         //2-1 이동방향을 설정한다. 
         dir = Camera.main.transform.TransformDirection(dir);
 
-
+        Playerdir = dir;
 
         //2-2 만일 바닥에 착지했다면
         if (cc.collisionFlags == CollisionFlags.Below)
@@ -125,5 +131,31 @@ public class PlayerMove : MonoBehaviour
         //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
 
-    } 
+
+        ///* KSH 수정사항 */
+        //if(Input.GetButtonDown("Jump") && scanObject != null)
+        //{
+        //    Debug.Log(scanObject);
+        //    manager.ShowText(scanObject);
+        //}
+    }
+
+    /* KSH 수정사항 */
+    public GameManager manager;
+    Vector3 Playerdir;
+
+    private void FixedUpdate()
+    {
+        ////// 만약 레이 맞은 물체 레이어가 캡슐이면
+        //if (Physics.Raycast(ray, out raycas))
+        //{
+        //    if (hit.("Capsule"))
+        //    {
+
+        //    }
+        //}
+            
+    }
+
+
 }
