@@ -139,7 +139,8 @@ public class PlayerMove : MonoBehaviour
             ray = new Ray(transform.position, transform.forward);
 ;           if (Physics.Raycast(ray, out hit, 100, layerMask))
             {
-                GameManager.gm.ShowText(hit.transform.gameObject);
+
+                GameManager.gm.ShowText(hit.transform.gameObject); // 대화 실행
             }
 
         }

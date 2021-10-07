@@ -7,18 +7,30 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     /* KSH 추가내역 : 대화창 */
+    public Text talkText;
     public GameObject TalkImage;
-    public GameObject scanObject; 
+ 
+    public GameObject scanObject;
+    public Image portraitImage;
+
+    public bool isMove;
+    public int talkIndex; //몇 번째 대화?
 
     public void ShowText(GameObject scanObj)
     {
-        Text TalkText = TalkImage.transform.Find("TalkText").GetComponent<Text>();
+        Capsule c = scanObj.GetComponent<Capsule>();
+        if(c.questId == QuestManager.qm.questId)
+        {
+           
+            TalkImage.SetActive(true);
 
-        scanObject = scanObj;
-        TalkText.text = " 미션 내용 " + scanObject.name + "입니다";
+            QuestTest qt = TalkImage.GetComponent<QuestTest>();
+            qt.SetQuestId(c.questId);
+        }
 
-        TalkImage.SetActive(true);
     }
+
+    
 
     /* KMB */
     float currTime;
@@ -150,10 +162,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if(TalkImage.activeSelf == false)
+            {
+                TalkImage.SetActive(true);
+
+                QuestTest qt = TalkImage.GetComponent<QuestTest>();
+                qt.SetQuestId(QuestManager.qm.questId);
+            }
+        }
+
         // 시간이 흐르게 하자
         //currTime += Time.deltaTime;
 
-
+        return;
 
         //만일 플레이어의 hp가 0 이하라면....
         if (player.hp <= 0)
@@ -188,6 +211,8 @@ public class GameManager : MonoBehaviour
             //상태를 '게임오버' 상태로 변경한다. 
             gState = GameState.GameOver;
         }
+
+        
     }
 }
 
