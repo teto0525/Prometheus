@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
+    // 싱글톤
+    public static PlayerMove pm;
+
+    private void Awake()
+    {
+        if (pm == null)
+            pm = this;
+    }
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -37,11 +45,21 @@ public class PlayerMove : MonoBehaviour
     //점프력 상태 변수 
     public bool isJumping = false;
 
+    /* KSH  수정사항 */
     // 레이캐스트
     private Ray ray;
     private RaycastHit hit;
     int layerMask = 1 << LayerMask.NameToLayer("Capsule");
 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //캐릭터 콘트롤러 컴포넌트를 받아오기
+        cc = GetComponent<CharacterController>();
+
+
+    }
 
     public void DamangeAction(int damage)
     {
@@ -59,6 +77,8 @@ public class PlayerMove : MonoBehaviour
         hiteffect.SetActive(false);
     }
 
+
+    /* KSH 수정사항 */
     private void OnTriggerEnter(Collider other)
     {
        
@@ -67,16 +87,7 @@ public class PlayerMove : MonoBehaviour
             DamangeAction(5);
             print(hp);
         }
-    }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //캐릭터 콘트롤러 컴포넌트를 받아오기
-        cc = GetComponent<CharacterController>();
-
-     
     }
 
     // Update is called once per frame

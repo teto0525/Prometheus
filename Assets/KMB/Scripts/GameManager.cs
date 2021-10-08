@@ -179,38 +179,38 @@ public class GameManager : MonoBehaviour
         return;
 
         //만일 플레이어의 hp가 0 이하라면....
-        if (player.hp <= 0)
-        {
+        //if (player.hp <= 0)
+        //{
 
-            //플레이어의 애니메이션을 멈춘다
-            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
+        //    //플레이어의 애니메이션을 멈춘다
+        //    player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
 
-            //상태 텍스트를 활성화 한다 
-            gameLabel.SetActive(true);
-            //상태텍스트의 내용을 "게임오버"로 한다. 
-            gameText.text = "Game Over";
-
-
-
-            //상태 텍스트이 색상을 붉은 색으로 한다. 
-            gameText.color = new Color32(255, 0, 0, 255);
+        //    //상태 텍스트를 활성화 한다 
+        //    gameLabel.SetActive(true);
+        //    //상태텍스트의 내용을 "게임오버"로 한다. 
+        //    gameText.text = "Game Over";
 
 
-            btn.SetActive(true);
-            //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
-            Transform buttons = gameText.transform.GetChild(0);
 
-            //버튼 오브젝트를 활성화한다
-            buttons.gameObject.SetActive(true);
+        //    //상태 텍스트이 색상을 붉은 색으로 한다. 
+        //    gameText.color = new Color32(255, 0, 0, 255);
 
-            //마우스 활성화 함수를 실행한다.
-            //Cursorlock이라는 스크립트를 불러오기
-            // Cursorlock_Rio cl = cursorlock.GetComponent<Cursorlock_Rio>();
-            //그 안에 있는 커서온을 실행시키기
-            // cl.CursorOn();
-            //상태를 '게임오버' 상태로 변경한다. 
-            gState = GameState.GameOver;
-        }
+
+        //    btn.SetActive(true);
+        //    //상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
+        //    Transform buttons = gameText.transform.GetChild(0);
+
+        //    //버튼 오브젝트를 활성화한다
+        //    buttons.gameObject.SetActive(true);
+
+        //    //마우스 활성화 함수를 실행한다.
+        //    //Cursorlock이라는 스크립트를 불러오기
+        //    // Cursorlock_Rio cl = cursorlock.GetComponent<Cursorlock_Rio>();
+        //    //그 안에 있는 커서온을 실행시키기
+        //    // cl.CursorOn();
+        //    //상태를 '게임오버' 상태로 변경한다. 
+        //    gState = GameState.GameOver;
+        //}
 
         
     }

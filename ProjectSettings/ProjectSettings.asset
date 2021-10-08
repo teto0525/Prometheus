@@ -580,9 +580,10 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT
+    1: CROSS_PLATFORM_INPUT;USE_PHYSICS2D
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT;USE_PHYSICS2D
+    13: USE_PHYSICS2D
     14: MOBILE_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}

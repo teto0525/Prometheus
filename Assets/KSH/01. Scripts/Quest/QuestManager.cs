@@ -8,14 +8,14 @@ public class QuestManager : MonoBehaviour
     public List<int> completeQuest = new List<int>();
 
     public int questId;
-    public int questActionIndex; // 현재 진행중인 퀘스트 저장
+    public int questActionIndex; // 대화 순서
     public GameObject[] gameObjects; // 퀘스트에 필요한 오브젝트
 
     Dictionary<int, Quest> questList;
 
     public Sprite[] questImage;
 
-    private void Awake()
+    private void Awake() // 싱글톤
     {
         if (qm == null) qm = this;
     }
@@ -26,6 +26,7 @@ public class QuestManager : MonoBehaviour
         GenerataData();
     }
 
+    /* 다음 퀘스트 진행 */
     // 현 퀘스트 성공시 다음 퀘스트 진행
     void NextQuest()
     {
@@ -35,10 +36,10 @@ public class QuestManager : MonoBehaviour
 
     void Controlobject() // 퀘스트 오브젝트에 있는 오브젝트 조절
     {
-        switch (questId)
+        switch (questId) // 퀘스트 아이디
         { 
-            case 10:
-                if (questActionIndex == 2)
+            case 10: // 퀘스트 10일때
+                if (questActionIndex == 2) 
                     gameObjects[0].SetActive(true);
                 break;
             case 20:
@@ -53,20 +54,10 @@ public class QuestManager : MonoBehaviour
         return questId + questActionIndex;
     }
 
-    //public string CheckQuest(int id)
-    //{
-    //    if (id == questList[questId].animalId.Length)
-    //    {
-    //        NextQuest();
-    //        Debug.Log(questId);
-    //    }
-
-    //    return questList[questId].questName;
-    //}
 
     public string CheckQuest(int q) // 플레이어가 알맞은 샘플 획득하면 questActionIndex를 증가시켜준다
     {
-        return questList[q].questName;
+        return questList[q].questName; // 퀘스트 리스트에서 퀘스트 이름을 리턴해준다
     }
 
     public string GetTalkId(int q, int talkOrder)
@@ -93,7 +84,7 @@ public class QuestManager : MonoBehaviour
     }
 
 
-    void GenerataData()
+    void GenerataData() // 대화문 내용
     {
         Quest quest = new Quest("1층에서 꽃사슴 샘플을 획득하시오", new int[] { 1000, 2000 });
         quest.AddTalk("첫번째 대화입니다 다음을 누르세요");

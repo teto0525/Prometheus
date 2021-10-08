@@ -14,11 +14,12 @@ public class Quest
 
     public Quest(string name, int[] animal)
     {
-        questName = name;
-        animalId = animal;
+        questName = name; // 퀘스트 이름
+        animalId = animal; // 해당 
 
     }
 
+    // 
     public void AddTalk(string talk)
     {
         talks.Add(talk);

@@ -10,6 +10,9 @@ TagManager:
   - Item
   - Enemy
   - AttackPoint
+  - MCam
+  - OVRCam
+  - MonitorCam
   layers:
   - Default
   - TransparentFX
