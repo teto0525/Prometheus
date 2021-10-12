@@ -145,27 +145,22 @@ public class PlayerMove : MonoBehaviour
 
 
         /* KSH 수정사항 */
-        if (GameManager.gm.scanObject != null)
+        if (SampleManager.sm.popUps != null)
         {
             ray = new Ray(transform.position, transform.forward);
 ;           if (Physics.Raycast(ray, out hit, 100, layerMask))
             {
 
-                GameManager.gm.ShowText(hit.transform.gameObject); // 대화 실행
+                // 이미지 순서대로 SetActive
+                SampleManager.sm.PopUps();
             }
 
         }
     }
 
     /* KSH 수정사항 */
-    public GameManager manager;
+    public SampleManager sm;
 
-
-    private void FixedUpdate()
-    {
-        //// 만약 레이 맞은 물체 레이어가 캡슐이면
-        
-    }
 
 
 }
