@@ -30,7 +30,8 @@ public class SoundManager : MonoBehaviour
     {
         EnemyDetection,
         TurretExplo,
-        EnemyAttack
+        Electric
+
     }
 
     //BGM AudioSource
