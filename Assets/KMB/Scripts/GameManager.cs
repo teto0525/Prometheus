@@ -6,44 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    /* KSH �߰����� : ��ȭâ */
-    public Text talkText;
-    public GameObject TalkImage;
-
-    public GameObject scanObject;
-    public Image portraitImage;
-
-    public bool isMove;
-    public int talkIndex; //�� ��° ��ȭ?
-
-    public void ShowText(GameObject scanObj)
-    {
-        Capsule c = scanObj.GetComponent<Capsule>();
-        if(c.questId == QuestManager.qm.questId)
-        {
-
-            TalkImage.SetActive(true);
-
-            QuestTest qt = TalkImage.GetComponent<QuestTest>();
-            qt.SetQuestId(c.questId);
-        }
-
-    }
-
-
-
-    /* KMB */
     float currTime;
 
     float createTime;
 
-    //���� ���� UI ����
+    //게임 상태 UI 변수
     public GameObject gameLabel;
 
-    //���ӻ��� UI�ؽ�Ʈ ������Ʈ ����
+    //게임상태 UI텍스트 컴포넌트 변수
     Text gameText;
 
-    //�̱��� ����
+    //싱글턴 변수 
     public static GameManager gm;
 
     private void Awake()
@@ -54,7 +27,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //���� ���� ����
+    //게임 상태 변수 
     public enum GameState
     {
         Ready,
@@ -63,51 +36,51 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    //���� ���� ���� ����
+    //현재 게임 상태 변수
     public GameState gState;
 
-    //�÷��̾� ���� Ŭ���� ����
+    //플레이어 무브 클래스 변수
     PlayerMove player;
 
 
-    ////�ɼ�ȭ�� UI ������Ʈ ����
+    ////옵션화면 UI 오브젝트 변수
     //public GameObject gameOption;
 
-    //�ɼ� ȭ�� �ѱ�
+    //옵션 화면 켜기
     //public void OpenOptionWindow()
     //{
-    //    //�ɼ� â�� Ȱ��ȭ �Ѵ�.
+    //    //옵션 창을 활성화 한다. 
     //    gameOption.SetActive(true);
-    //    //���Ӽӵ��� 0�������� ��ȯ�Ѵ�.
+    //    //게임속도를 0배속으로 전환한다.
     //    Time.timeScale = 0f;
-    //    //���� ���¸� �Ͻ����� ���·� �����Ѵ�.
+    //    //게임 상태를 일시정지 상태로 변경한다. 
     //    gState = GameState.Pause;
     //}
 
-    //�����ϱ� �ɼ�
+    //계속하기 옵션
     //public void CloseOptionWindow()
     //{
-    //    //�ɼ�â�� ��Ȱ��ȭ �Ѵ�
+    //    //옵션창을 비활성화 한다
     //    gameOption.SetActive(false);
-    //    //���Ӽӵ��� 1�������� ��ȯ�Ѵ�.
+    //    //게임속도를 1배속으로 전환한다. 
     //    Time.timeScale = 1f;
-    //    //���ӻ��¸� ������ ���·� �����Ѵ�.
+    //    //게임상태를 게임중 상태로 변경한다.
     //    gState = GameState.Run;
     //}
 
-    //�ٽ��ϱ� �ɼ�
+    //다시하기 옵션
     public void RestartGame()
     {
-        //���� �ӵ��� 1�������� ��ȯ�Ѵ�
+        //게임 속도를 1배속으로 전환한다
         Time.timeScale = 1f;
-        //������ ��ȣ�� �ٽ� �ε��Ѵ�
+        //현재씬 번호를 다시 로드한다
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    //���� ���� �ɼ�
+    //게임 종료 옵션
     public void QuitGame()
     {
-        //���ø����̼��� �����Ѵ�.
+        //어플리케이션을 종료한다. 
         Application.Quit();
     }
 
@@ -116,40 +89,40 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //�ʱ� ���� ���´� �غ� ���·� �����Ѵ�.
+        //초기 게임 상태는 준비 상태로 설정한다. 
         gState = GameState.Ready;
 
-        //���� ���� UI ������Ʈ���� Text ������Ʈ�� �����´�.
+        //게임 상태 UI 오브젝트에서 Text 컴포넌트를 가져온다.
         gameText = gameLabel.GetComponent<Text>();
 
-        //���� �ؽ�Ʈ�� ������ "Ready"���Ѵ�.
+        //상대 텍스트의 내용을 "Ready"로한다. 
         gameText.text = "Ready...";
 
-        //�����ؽ�Ʈ�� ������ ��Ȳ������ �Ѵ�.
+        //상대텍스트의 색상을 주황색으로 한다. 
         gameText.color = new Color32(255, 185, 0, 255);
 
-        //���� �غ� -> �غ��� ���·� ��ȯ�ϱ�
+        //게임 준비 -> 준비중 상태로 전환하기
         StartCoroutine(ReadyToStart());
 
-        //�÷��̾� ������Ʈ�� ã�� �� �÷��̾��� PlayerMove ������Ʈ �޾ƿ���
+        //플레이어 오브젝트를 찾은 수 플레이어의 PlayerMove 컴포넌트 받아오기
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
     }
 
     IEnumerator ReadyToStart()
     {
-        //2�ʰ� �����Ѵ�..
+        //2초간 대기한다.. 
         yield return new WaitForSeconds(2f);
 
-        //���� �ؽ�Ʈ�� ������ "Go!"�� �Ѵ�.
+        //상태 텍스트의 내용을 "Go!"로 한다. 
         gameText.text = "Go!";
 
-        //0.5�ʰ� �����Ѵ�..
+        //0.5초간 대기한다.. 
         yield return new WaitForSeconds(0.5f);
 
-        //���� �ؽ�Ʈ�� ��Ȱ��ȭ �Ѵ�.
+        //성태 텍스트를 비활성화 한다. 
         gameLabel.SetActive(false);
 
-        //���¸� ������ ���·� �����Ѵ�.
+        //상태를 게임중 상태로 변경한다.
         gState = GameState.Run;
     }
 
@@ -158,52 +131,42 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if(TalkImage.activeSelf == false)
-            {
-                TalkImage.SetActive(true);
-
-                QuestTest qt = TalkImage.GetComponent<QuestTest>();
-                qt.SetQuestId(QuestManager.qm.questId);
-            }
-        }
-
-        // �ð��� �帣�� ����
+        // 시간이 흐르게 하자
         //currTime += Time.deltaTime;
 
-        //���� �÷��̾��� hp�� 0 ���϶���....
-        //if (player.hp <= 0)
-        //{
+        //만일 플레이어의 hp가 0 이하라면....
+        if (player.hp <= 0)
+        {
 
-        //    //�÷��̾��� �ִϸ��̼��� ������
-        //    player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
+            //플레이어의 애니메이션을 멈춘다
+            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
 
-            //���� �ؽ�Ʈ�� Ȱ��ȭ �Ѵ�
+            //상태 텍스트를 활성화 한다 
             gameLabel.SetActive(true);
 
-            //�����ؽ�Ʈ�� ������ "���ӿ���"�� �Ѵ�.
+            //상태텍스트의 내용을 "게임오버"로 한다. 
             gameText.text = "Game Over";
 
-            //���� �ؽ�Ʈ�� ������ ���� ������ �Ѵ�.
+            //상태 텍스트이 색상을 붉은 색으로 한다. 
             gameText.color = new Color32(255, 0, 0, 255);
 
 
             //btn.SetActive(true);
-            ////���� �ؽ�Ʈ�� �ڽ� ������Ʈ�� Ʈ������ ������Ʈ�� �����´�
+            ////상태 텍스트의 자식 오브젝트의 트렌스폼 컴포넌트를 가져온다
             //Transform buttons = gameText.transform.GetChild(0);
 
-            ////��ư ������Ʈ�� Ȱ��ȭ�Ѵ�
+            ////버튼 오브젝트를 활성화한다
             //buttons.gameObject.SetActive(true);
 
-            //���콺 Ȱ��ȭ �Լ��� �����Ѵ�.
-            //Cursorlock�̶��� ��ũ��Ʈ�� �ҷ�����
+            //마우스 활성화 함수를 실행한다.
+            //Cursorlock이라는 스크립트를 불러오기
             // Cursorlock_Rio cl = cursorlock.GetComponent<Cursorlock_Rio>();
-            //�� �ȿ� �ִ� Ŀ������ ������Ű��
+            //그 안에 있는 커서온을 실행시키기
             // cl.CursorOn();
-            //���¸� '���ӿ���' ���·� �����Ѵ�.
+            //상태를 '게임오버' 상태로 변경한다. 
 
             gState = GameState.GameOver;
         }
-    
+    }
 }
+
