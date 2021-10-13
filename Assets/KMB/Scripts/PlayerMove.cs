@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
+    
 
     private Vector3 moveDirection = Vector3.zero;
 
     //Player 체력 변수 
-    public int hp = 100;
+    public float hp = 100;
 
     //최대 체력변수
-    int maxHP = 100;
+    float maxHP = 100;
 
     //hp 슬라이더 변수 
     public Slider hpSlider;
@@ -21,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject hiteffect;
 
     public float moveSpeed = 7f;
+
     //캐릭터 콘트롤러 변수 
     CharacterController cc;
 
@@ -36,13 +38,14 @@ public class PlayerMove : MonoBehaviour
     //점프력 상태 변수 
     public bool isJumping = false;
 
-    public void DamangeAction(int damage)
+    public void DamangeAction(float damage)
     {
         hp -= damage;
         if (hp > 0)
         {
             StartCoroutine(PlayHitEffect());
         }
+
     }
     IEnumerator PlayHitEffect()
     {
@@ -54,14 +57,29 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
-        if (other.tag == "AttackPoint")
+
+        if (other.tag == ("AttackPoint"))
         {
             DamangeAction(5);
+
             print(hp);
         }
+
+        else if (other.tag == ("BulletUp"))
+        {
+            RecoverAction(10);
+            Destroy(other.gameObject);
+
+            print(hp);
+        }
+
     }
 
+    public void RecoverAction(float damage)
+    {
+        hp += damage;
+        print(hp);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -91,8 +109,6 @@ public class PlayerMove : MonoBehaviour
 
         //2-1 이동방향을 설정한다. 
         dir = Camera.main.transform.TransformDirection(dir);
-
-
 
         //2-2 만일 바닥에 착지했다면
         if (cc.collisionFlags == CollisionFlags.Below)
@@ -125,5 +141,5 @@ public class PlayerMove : MonoBehaviour
         //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
 
-    } 
+    }
 }

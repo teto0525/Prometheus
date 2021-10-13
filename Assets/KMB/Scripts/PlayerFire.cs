@@ -108,5 +108,9 @@ public class PlayerFire : MonoBehaviour
         //4. 만들어진 총알의 앞방향을 총구의 앞방향으로 한다. 
         bullet.transform.forward = trRight.forward;
     }
+
+    Transform targetPos;
+
+    
     #endregion
 }

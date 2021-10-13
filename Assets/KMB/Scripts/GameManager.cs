@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject cursorlock;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -107,8 +106,6 @@ public class GameManager : MonoBehaviour
 
         //플레이어 오브젝트를 찾은 수 플레이어의 PlayerMove 컴포넌트 받아오기
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
-
-
     }
 
     IEnumerator ReadyToStart()
@@ -129,7 +126,6 @@ public class GameManager : MonoBehaviour
         gState = GameState.Run;
     }
 
-
     public GameObject btn;
     // Update is called once per frame
     void Update()
@@ -137,8 +133,6 @@ public class GameManager : MonoBehaviour
 
         // 시간이 흐르게 하자
         //currTime += Time.deltaTime;
-
-
 
         //만일 플레이어의 hp가 0 이하라면....
         if (player.hp <= 0)

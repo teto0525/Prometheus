@@ -63,6 +63,10 @@ public class EGA_Laser : MonoBehaviour
                 //Texture tiling
                 Length[0] = MainTextureLength * (Vector3.Distance(transform.position, hit.point));
                 Length[2] = NoiseTextureLength * (Vector3.Distance(transform.position, hit.point));
+
+                PlayerMove pm = hit.transform.GetComponent<PlayerMove>();
+                pm.DamangeAction(0.09f);
+
                 //Texture speed balancer {DISABLED AFTER UPDATE}
                 //LaserSpeed[0] = (LaserStartSpeed[0] * 4) / (Vector3.Distance(transform.position, hit.point));
                 //LaserSpeed[2] = (LaserStartSpeed[2] * 4) / (Vector3.Distance(transform.position, hit.point));

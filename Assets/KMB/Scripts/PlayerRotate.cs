@@ -10,6 +10,8 @@ public class PlayerRotate : MonoBehaviour
     //회전값 변수 
     float mx = 0;
 
+    public bool useMouse;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +27,20 @@ public class PlayerRotate : MonoBehaviour
             return;
         }
 
+        Vector2 stickpos = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
+
+
         //사용자의 마우스 입력을 받아 플레이어를 회전시키고 싶다. 
         //1. 마우스 좌우 입력값을 받는다. 
-        float mouse_X = Input.GetAxis("Mouse X");
+        float mouse_X;
+        if(useMouse == true)
+        {
+            mouse_X = Input.GetAxis("Mouse X");
+        }
+        else
+        {
+            mouse_X = stickpos.x;
+        }
 
         //1-1 회전 값 변수에 마우스 입력 값 만큼 미리 누적 시킨다. 
         mx += mouse_X * rotSpeed * Time.deltaTime;

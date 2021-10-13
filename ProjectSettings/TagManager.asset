@@ -10,6 +10,9 @@ TagManager:
   - Item
   - Enemy
   - AttackPoint
+  - Turret
+  - EnergyUp
+  - BulletUp
   layers:
   - Default
   - TransparentFX

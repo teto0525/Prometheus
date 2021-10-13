@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
 {
+    //Player 체력 변수 
+    public float energy = 100;
+
+    //최대 체력변수
+    float maxEn = 100;
+
+    //Energybar 슬라이더 변수
+    public Slider energyBar;
+
     //왼손의 Transform
     public Transform trLeft;
     //이동할 위치
     Vector3 movePoint;
-
 
     public Transform start;
     public Transform end;
@@ -42,6 +51,15 @@ public class Teleport : MonoBehaviour
                 //line.SetPosition(trLeft.position, hit.point);
                 //부딪힌 위치를 잠시 저장
                 movePoint = hit.point;
+
+                DamageAction(0.5f);
+
+                //만약에 맞은놈이 에너미라면
+                if (hit.transform.tag == "Enemy")
+                {
+                    //에너미를 죽여라
+                    Destroy(hit.transform.gameObject, 2);
+                }
             }
             else
             {
@@ -61,6 +79,32 @@ public class Teleport : MonoBehaviour
                 //나를 부딪힌 위치로 이동
                 //transform.position = movePoint;
             }
+        }
+        //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
+        energyBar.value = (float)energy / (float)maxEn;
+    }
+
+    public void DamageAction(float damage)
+    {
+        energy -= damage;
+        print(energy);
+    }
+
+    public void RecoverAction(float damage)
+    {
+        energy += damage;
+        print(energy);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == ("EnergyUp"))
+        {
+            RecoverAction(10);
+            Destroy(other.gameObject);
+
+            print(energy);
         }
     }
 }
