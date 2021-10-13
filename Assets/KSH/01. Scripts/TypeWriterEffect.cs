@@ -31,7 +31,7 @@ public class TypeWriterEffect : MonoBehaviour
     //시작과 동시에 타이핑시작
     void Start()
     {
-        Get_Typing(dialog_cnt,fulltext);
+        Get_Typing(fulltext.Length, fulltext);
     }
 
 
@@ -40,6 +40,7 @@ public class TypeWriterEffect : MonoBehaviour
     {
         if(text_exit==true)
         {
+            SampleManager.sm.OnCompleteDialog();
             gameObject.SetActive(false);
         }
         

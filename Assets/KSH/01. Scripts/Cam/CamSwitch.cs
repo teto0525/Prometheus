@@ -47,16 +47,16 @@ public class CamSwitch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            if(MCam == true)
-            {
-                onMonitor = false;
-                MainCameraOn();
-            }
+            
+            MainCameraOn();
+            
         }
+
+       
         else
         {
-            onMonitor = true;
-            MonitorCamerOn();
+            //onMonitor = true;
+           // MonitorCamerOn();
         }
     }
 }

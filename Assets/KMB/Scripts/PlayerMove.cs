@@ -145,14 +145,16 @@ public class PlayerMove : MonoBehaviour
 
 
         /* KSH 수정사항 */
-        if (SampleManager.sm.popUps != null)
+        if (SampleManager.sm.popUps != null )
         {
             ray = new Ray(transform.position, transform.forward);
 ;           if (Physics.Raycast(ray, out hit, 100, layerMask))
             {
-
+                
                 // 이미지 순서대로 SetActive
                 SampleManager.sm.PopUps();
+                // 이미지 SetActive 한 뒤로 해당 capsule 레이어 이름 바꿔주기
+                layerMask = LayerMask.NameToLayer("Default");
             }
 
         }

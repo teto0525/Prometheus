@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class SampleManager : MonoBehaviour
 {
     // ½Ì±ÛÅæ ¼±¾ð
     public static SampleManager sm = null;
+
+  
 
     public void Awake()
     {
@@ -48,5 +51,16 @@ public class SampleManager : MonoBehaviour
         
     }
 
-   
+    public void OnCompleteDialog()
+    {
+        StartCoroutine(delay());
+    }
+
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        popUps[index].gameObject.SetActive(false);
+
+    }
 }

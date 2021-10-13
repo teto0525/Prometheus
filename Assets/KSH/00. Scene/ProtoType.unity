@@ -3875,7 +3875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &101557376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4404,7 +4404,7 @@ MonoBehaviour:
   - ":  \t\uACF0\uC740 \uC7A1\uC2DD\uC131\uC774\uBA70 \uB098\uBB34\uD0C0\uAE30\uB97C
     \uC798\uD55C\uB2E4\uB294 \uD2B9\uC131\uC774 \uC788\uC2B5\uB2C8\uB2E4."
   - "\uC704 \uC0D8\uD50C\uC744 \uCC44\uCDE8\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
-  dialog_cnt: 5
+  dialog_cnt: 4
   text_exit: 0
   text_full: 0
   text_cut: 0
@@ -4429,7 +4429,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
@@ -6229,6 +6229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.999983
@@ -6244,6 +6248,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0.669
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -7757,6 +7765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2275
@@ -7792,6 +7804,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 12.233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -20281,7 +20297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &553043338
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21878,7 +21894,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
@@ -26525,7 +26541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 679138878}
   - component: {fileID: 679138879}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36120,7 +36136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921042909}
   - component: {fileID: 921042910}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37224,7 +37240,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
@@ -38768,7 +38784,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
@@ -38818,7 +38834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 976817446}
   - component: {fileID: 976817447}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41354,6 +41370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.6397755
@@ -41389,6 +41409,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -50.219
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -42793,6 +42817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9943075
@@ -42808,6 +42836,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 12.233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -45214,7 +45246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119857453}
   - component: {fileID: 1119857454}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45984,6 +46016,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Depth
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: near clip plane
@@ -46792,6 +46828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9943075
@@ -46807,6 +46847,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 12.233
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -53319,7 +53363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1327565651}
   - component: {fileID: 1327565652}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63555,7 +63599,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 002AE__BEAR
+  m_Text: 1000__BEAR
 --- !u!222 &1609497191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65188,51 +65232,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4081126998482760, guid: fdaebc9fb5b8f7f4aa30b83343278fa5, type: 3}
   m_PrefabInstance: {fileID: 1654329652}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1661962591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1661962593}
-  - component: {fileID: 1661962592}
-  m_Layer: 0
-  m_Name: CamManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1661962592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661962591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c8df8711a47e24f83428ab2270f401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OVRCam: {fileID: 1810676773}
-  MCam: {fileID: 1145442139}
---- !u!4 &1661962593
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661962591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.09, y: 6.925, z: -1.1877378}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1664500429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66541,7 +66540,7 @@ RectTransform:
   - {fileID: 76097392}
   - {fileID: 553043338}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -67132,7 +67131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727561647}
   - component: {fileID: 1727561648}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78442,6 +78441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.999983
@@ -78457,6 +78460,10 @@ PrefabInstance:
     - target: {fileID: 1151388028547126963, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0.669
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0377857e7b2be94b94f2eab03e93779, type: 3}
@@ -79074,7 +79081,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
@@ -81195,7 +81202,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 709581c2aad1d3c44a468b1e22e40993, type: 3}
+    m_Font: {fileID: 12800000, guid: 82091df75cc3a6f47a1e4e70af634310, type: 3}
     m_FontSize: 7
     m_FontStyle: 0
     m_BestFit: 0
