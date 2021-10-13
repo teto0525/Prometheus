@@ -205,5 +205,5 @@ public class GameManager : MonoBehaviour
 
             gState = GameState.GameOver;
         }
-    }
+    
 }

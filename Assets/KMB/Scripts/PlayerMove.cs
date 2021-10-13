@@ -46,7 +46,6 @@ public class PlayerMove : MonoBehaviour
     //������ ���� ����
     public bool isJumping = false;
 
-    public void DamangeAction(float damage)
     /* KSH  �������� */
     // ����ĳ��Ʈ
     private Ray ray;
