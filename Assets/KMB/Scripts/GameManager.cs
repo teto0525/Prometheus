@@ -6,17 +6,44 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    /* KSH ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½È­Ã¢ */
+    public Text talkText;
+    public GameObject TalkImage;
+
+    public GameObject scanObject;
+    public Image portraitImage;
+
+    public bool isMove;
+    public int talkIndex; //ï¿½ï¿½ ï¿½ï¿½Â° ï¿½ï¿½È­?
+
+    public void ShowText(GameObject scanObj)
+    {
+        Capsule c = scanObj.GetComponent<Capsule>();
+        if(c.questId == QuestManager.qm.questId)
+        {
+
+            TalkImage.SetActive(true);
+
+            QuestTest qt = TalkImage.GetComponent<QuestTest>();
+            qt.SetQuestId(c.questId);
+        }
+
+    }
+
+
+
+    /* KMB */
     float currTime;
 
     float createTime;
 
-    //°ÔÀÓ »óÅÂ UI º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½
     public GameObject gameLabel;
 
-    //°ÔÀÓ»óÅÂ UIÅØ½ºÆ® ÄÄÆ÷³ÍÆ® º¯¼ö
+    //ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ UIï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     Text gameText;
 
-    //½Ì±ÛÅÏ º¯¼ö 
+    //ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public static GameManager gm;
 
     private void Awake()
@@ -27,7 +54,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //°ÔÀÓ »óÅÂ º¯¼ö 
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public enum GameState
     {
         Ready,
@@ -36,51 +63,51 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    //ÇöÀç °ÔÀÓ »óÅÂ º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameState gState;
 
-    //ÇÃ·¹ÀÌ¾î ¹«ºê Å¬·¡½º º¯¼ö
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     PlayerMove player;
 
 
-    ////¿É¼ÇÈ­¸é UI ¿ÀºêÁ§Æ® º¯¼ö
+    ////ï¿½É¼ï¿½È­ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     //public GameObject gameOption;
 
-    //¿É¼Ç È­¸é ÄÑ±â
+    //ï¿½É¼ï¿½ È­ï¿½ï¿½ ï¿½Ñ±ï¿½
     //public void OpenOptionWindow()
     //{
-    //    //¿É¼Ç Ã¢À» È°¼ºÈ­ ÇÑ´Ù. 
+    //    //ï¿½É¼ï¿½ Ã¢ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½.
     //    gameOption.SetActive(true);
-    //    //°ÔÀÓ¼Óµµ¸¦ 0¹è¼ÓÀ¸·Î ÀüÈ¯ÇÑ´Ù.
+    //    //ï¿½ï¿½ï¿½Ó¼Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     //    Time.timeScale = 0f;
-    //    //°ÔÀÓ »óÅÂ¸¦ ÀÏ½ÃÁ¤Áö »óÅÂ·Î º¯°æÇÑ´Ù. 
+    //    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     //    gState = GameState.Pause;
     //}
 
-    //°è¼ÓÇÏ±â ¿É¼Ç
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½É¼ï¿½
     //public void CloseOptionWindow()
     //{
-    //    //¿É¼ÇÃ¢À» ºñÈ°¼ºÈ­ ÇÑ´Ù
+    //    //ï¿½É¼ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½
     //    gameOption.SetActive(false);
-    //    //°ÔÀÓ¼Óµµ¸¦ 1¹è¼ÓÀ¸·Î ÀüÈ¯ÇÑ´Ù. 
+    //    //ï¿½ï¿½ï¿½Ó¼Óµï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     //    Time.timeScale = 1f;
-    //    //°ÔÀÓ»óÅÂ¸¦ °ÔÀÓÁß »óÅÂ·Î º¯°æÇÑ´Ù.
+    //    //ï¿½ï¿½ï¿½Ó»ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     //    gState = GameState.Run;
     //}
 
-    //´Ù½ÃÇÏ±â ¿É¼Ç
+    //ï¿½Ù½ï¿½ï¿½Ï±ï¿½ ï¿½É¼ï¿½
     public void RestartGame()
     {
-        //°ÔÀÓ ¼Óµµ¸¦ 1¹è¼ÓÀ¸·Î ÀüÈ¯ÇÑ´Ù
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½
         Time.timeScale = 1f;
-        //ÇöÀç¾À ¹øÈ£¸¦ ´Ù½Ã ·ÎµåÇÑ´Ù
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Îµï¿½ï¿½Ñ´ï¿½
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    //°ÔÀÓ Á¾·á ¿É¼Ç
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½
     public void QuitGame()
     {
-        //¾îÇÃ¸®ÄÉÀÌ¼ÇÀ» Á¾·áÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         Application.Quit();
     }
 
@@ -89,40 +116,40 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ÃÊ±â °ÔÀÓ »óÅÂ´Â ÁØºñ »óÅÂ·Î ¼³Á¤ÇÑ´Ù. 
+        //ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½ ï¿½Øºï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         gState = GameState.Ready;
 
-        //°ÔÀÓ »óÅÂ UI ¿ÀºêÁ§Æ®¿¡¼­ Text ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿Â´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Text ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
         gameText = gameLabel.GetComponent<Text>();
 
-        //»ó´ë ÅØ½ºÆ®ÀÇ ³»¿ëÀ» "Ready"·ÎÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "Ready"ï¿½ï¿½ï¿½Ñ´ï¿½.
         gameText.text = "Ready...";
 
-        //»ó´ëÅØ½ºÆ®ÀÇ »ö»óÀ» ÁÖÈ²»öÀ¸·Î ÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
         gameText.color = new Color32(255, 185, 0, 255);
 
-        //°ÔÀÓ ÁØºñ -> ÁØºñÁß »óÅÂ·Î ÀüÈ¯ÇÏ±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ -> ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½Ï±ï¿½
         StartCoroutine(ReadyToStart());
 
-        //ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ Ã£Àº ¼ö ÇÃ·¹ÀÌ¾îÀÇ PlayerMove ÄÄÆ÷³ÍÆ® ¹Þ¾Æ¿À±â
+        //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ PlayerMove ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
     }
 
     IEnumerator ReadyToStart()
     {
-        //2ÃÊ°£ ´ë±âÇÑ´Ù.. 
+        //2ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
         yield return new WaitForSeconds(2f);
 
-        //»óÅÂ ÅØ½ºÆ®ÀÇ ³»¿ëÀ» "Go!"·Î ÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "Go!"ï¿½ï¿½ ï¿½Ñ´ï¿½.
         gameText.text = "Go!";
 
-        //0.5ÃÊ°£ ´ë±âÇÑ´Ù.. 
+        //0.5ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½..
         yield return new WaitForSeconds(0.5f);
 
-        //¼ºÅÂ ÅØ½ºÆ®¸¦ ºñÈ°¼ºÈ­ ÇÑ´Ù. 
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½.
         gameLabel.SetActive(false);
 
-        //»óÅÂ¸¦ °ÔÀÓÁß »óÅÂ·Î º¯°æÇÑ´Ù.
+        //ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         gState = GameState.Run;
     }
 
@@ -131,42 +158,52 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        // ½Ã°£ÀÌ Èå¸£°Ô ÇÏÀÚ
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if(TalkImage.activeSelf == false)
+            {
+                TalkImage.SetActive(true);
+
+                QuestTest qt = TalkImage.GetComponent<QuestTest>();
+                qt.SetQuestId(QuestManager.qm.questId);
+            }
+        }
+
+        // ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½å¸£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //currTime += Time.deltaTime;
 
-        //¸¸ÀÏ ÇÃ·¹ÀÌ¾îÀÇ hp°¡ 0 ÀÌÇÏ¶ó¸é....
-        if (player.hp <= 0)
-        {
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ hpï¿½ï¿½ 0 ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½....
+        //if (player.hp <= 0)
+        //{
 
-            //ÇÃ·¹ÀÌ¾îÀÇ ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ¸ØÃá´Ù
-            player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
+        //    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //    player.GetComponentInChildren<Animator>().SetFloat("MoveMotion", 0f);
 
-            //»óÅÂ ÅØ½ºÆ®¸¦ È°¼ºÈ­ ÇÑ´Ù 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½Ñ´ï¿½
             gameLabel.SetActive(true);
 
-            //»óÅÂÅØ½ºÆ®ÀÇ ³»¿ëÀ» "°ÔÀÓ¿À¹ö"·Î ÇÑ´Ù. 
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½Ñ´ï¿½.
             gameText.text = "Game Over";
 
-            //»óÅÂ ÅØ½ºÆ®ÀÌ »ö»óÀ» ºÓÀº »öÀ¸·Î ÇÑ´Ù. 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
             gameText.color = new Color32(255, 0, 0, 255);
 
 
             //btn.SetActive(true);
-            ////»óÅÂ ÅØ½ºÆ®ÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÇ Æ®·»½ºÆû ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿Â´Ù
+            ////ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½
             //Transform buttons = gameText.transform.GetChild(0);
 
-            ////¹öÆ° ¿ÀºêÁ§Æ®¸¦ È°¼ºÈ­ÇÑ´Ù
+            ////ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ñ´ï¿½
             //buttons.gameObject.SetActive(true);
 
-            //¸¶¿ì½º È°¼ºÈ­ ÇÔ¼ö¸¦ ½ÇÇàÇÑ´Ù.
-            //CursorlockÀÌ¶ó´Â ½ºÅ©¸³Æ®¸¦ ºÒ·¯¿À±â
+            //ï¿½ï¿½ï¿½ì½º È°ï¿½ï¿½È­ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+            //Cursorlockï¿½Ì¶ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
             // Cursorlock_Rio cl = cursorlock.GetComponent<Cursorlock_Rio>();
-            //±× ¾È¿¡ ÀÖ´Â Ä¿¼­¿ÂÀ» ½ÇÇà½ÃÅ°±â
+            //ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
             // cl.CursorOn();
-            //»óÅÂ¸¦ '°ÔÀÓ¿À¹ö' »óÅÂ·Î º¯°æÇÑ´Ù. 
+            //ï¿½ï¿½ï¿½Â¸ï¿½ 'ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
             gState = GameState.GameOver;
         }
     }
 }
-

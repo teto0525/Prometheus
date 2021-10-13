@@ -6,39 +6,64 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    
+    // ï¿½Ì±ï¿½ï¿½ï¿½
+    public static PlayerMove pm;
+
+    private void Awake()
+    {
+        if (pm == null)
+            pm = this;
+    }
 
     private Vector3 moveDirection = Vector3.zero;
 
-    //Player Ã¼·Â º¯¼ö 
+    //Player Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float hp = 100;
 
-    //ÃÖ´ë Ã¼·Âº¯¼ö
+    //ï¿½Ö´ï¿½ Ã¼ï¿½Âºï¿½ï¿½ï¿½
     float maxHP = 100;
 
-    //hp ½½¶óÀÌ´õ º¯¼ö 
+    //hp ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Slider hpSlider;
 
     public GameObject hiteffect;
 
     public float moveSpeed = 7f;
 
-    //Ä³¸¯ÅÍ ÄÜÆ®·Ñ·¯ º¯¼ö 
+    //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½
     CharacterController cc;
+    Rigidbody rigid;
 
-    //Áß·Âº¯¼ö 
+    //ï¿½ß·Âºï¿½ï¿½ï¿½
     float gravity = -20;
 
-    //¼öÁ÷ ¼Ó·Â º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ó·ï¿½ ï¿½ï¿½ï¿½ï¿½
     float yVelocity;
 
-    //Á¡ÇÁ·Â º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float jumpPower = 4f;
 
-    //Á¡ÇÁ·Â »óÅÂ º¯¼ö 
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool isJumping = false;
 
     public void DamangeAction(float damage)
+    /* KSH  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+    // ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Æ®
+    private Ray ray;
+    private RaycastHit hit;
+    int layerMask = 1 << LayerMask.NameToLayer("Capsule");
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
+        cc = GetComponent<CharacterController>();
+
+
+    }
+
+    public void DamangeAction(int damage)
     {
         hp -= damage;
         if (hp > 0)
@@ -55,6 +80,8 @@ public class PlayerMove : MonoBehaviour
         hiteffect.SetActive(false);
     }
 
+
+    /* KSH ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
     private void OnTriggerEnter(Collider other)
     {
 
@@ -81,13 +108,6 @@ public class PlayerMove : MonoBehaviour
         print(hp);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Ä³¸¯ÅÍ ÄÜÆ®·Ñ·¯ ÄÄÆ÷³ÍÆ®¸¦ ¹Þ¾Æ¿À±â
-        cc = GetComponent<CharacterController>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -96,50 +116,71 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        //WASDÅ°¸¦ ´©¸£¸é ÀÔ·ÂÇÏ¸é Ä³¸¯ÅÍ¸¦ ±× ¹æÇâÀ¸·Î ÀÌµ¿½ÃÅ°°í ½Í´Ù. 
-        //[space]Å°¸¦ ´©¸£¸é Ä³¸¯ÅÍ¸¦ ¼öÁ÷À¸·Î Á¡ÇÁ½ÃÅ°°í ½Í´Ù. 
+        //WASDÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¸ï¿½ Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Í´ï¿½.
+        //[space]Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Í´ï¿½.
 
-        //1.»ç¿ëÀÚÀÇ ÀÔ·ÂÀ» ¹Þ´Â´Ù. 
+        //1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        //2.ÀÌµ¿¹æÇâÀ» ¼³Á¤ÇÑ´Ù. 
+        //2.ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         Vector3 dir = new Vector3(h, 0, v);
         dir = dir.normalized;
 
-        //2-1 ÀÌµ¿¹æÇâÀ» ¼³Á¤ÇÑ´Ù. 
+        //2-1 ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         dir = Camera.main.transform.TransformDirection(dir);
 
-        //2-2 ¸¸ÀÏ ¹Ù´Ú¿¡ ÂøÁöÇß´Ù¸é
+        //2-2 ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´Ù¸ï¿½
         if (cc.collisionFlags == CollisionFlags.Below)
         {
-            //¸¸ÀÏ Á¡ÇÁ ÁßÀÌ¾ú´Ù¸é 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½Ù¸ï¿½
             if (isJumping)
             {
-                //Á¡ÇÁ Àü »óÅÂ·Î ÃÊ±âÈ­ÇÑ´Ù. 
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
                 isJumping = false;
-                //Ä³¸¯ÅÍ ¼öÁ÷ ¼Óµµ¸¦ OÀ¸·Î ¸¸µç´Ù. 
+                //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ Oï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
                 yVelocity = 0;
             }
         }
 
-        //2-3 ¸¸ÀÏ Å°º¸µå[space]Å°¸¦ ´­·È´Ù¸é 
+        //2-3 ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½[space]Å°ï¿½ï¿½ ï¿½ï¿½ï¿½È´Ù¸ï¿½
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
-            //Ä³¸¯ÅÍ ¼öÁ÷ ¼Óµµ¿¡ Á¡ÇÁ·ÂÀ» Àû¿ëÇÑ´Ù. 
+            //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             isJumping = true;
             yVelocity = jumpPower;
         }
 
-        //2-4 Ä³¸¯ÅÍ ¼öÁ÷ ¼Óµµ¿¡ Áß·Â °ªÀ» Àû¿ëÇÑ´Ù. 
+        //2-4 Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         yVelocity += gravity * Time.deltaTime;
         dir.y = yVelocity;
 
-        //3. ÀÌµ¿¼Óµµ¿¡ ¸ÂÃç ÀÌµ¿ÇÑ´Ù. 
+        //3. ï¿½Ìµï¿½ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½.
         cc.Move(dir * moveSpeed * Time.deltaTime);
 
-        //4. ÇöÀç ÇÃ·¹ÀÌ¾î hp(%)¸¦ hp ½½¶óÀÌ´õÀÇ value¿¡ ¹Ý¿µÇÑ´Ù. 
+        //4. ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ hp(%)ï¿½ï¿½ hp ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ valueï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½Ñ´ï¿½.
         hpSlider.value = (float)hp / (float)maxHP;
 
+
+        /* KSH ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+        if (SampleManager.sm.popUps != null )
+        {
+            ray = new Ray(transform.position, transform.forward);
+;           if (Physics.Raycast(ray, out hit, 100, layerMask))
+            {
+
+                // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SetActive
+                SampleManager.sm.PopUps();
+                // ï¿½Ì¹ï¿½ï¿½ï¿½ SetActive ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½Ø´ï¿½ capsule ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½Ì¸ï¿½ ï¿½Ù²ï¿½ï¿½Ö±ï¿½
+                layerMask = LayerMask.NameToLayer("Default");
+            }
+
+        }
     }
+
+    /* KSH ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+    public SampleManager sm;
+
+
+
 }
