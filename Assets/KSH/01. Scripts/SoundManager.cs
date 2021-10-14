@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if(soundManager  == null)
+        if (soundManager == null)
         {
             soundManager = this;
             DontDestroyOnLoad(gameObject);
@@ -30,8 +30,9 @@ public class SoundManager : MonoBehaviour
     {
         EnemyDetection,
         TurretExplo,
-        Electric
-
+        Electric,
+        EnergyBar,
+        
     }
 
     //BGM AudioSource
