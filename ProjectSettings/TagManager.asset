@@ -26,30 +26,42 @@ TagManager:
   - Capsule
   - Enemy
   - AttackPoint
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MAP
+    uniqueID: 3449021453
+    locked: 0
+  - name: Player
+    uniqueID: 138250417
+    locked: 0
+  - name: Enemy
+    uniqueID: 2076541417
+    locked: 0
+  - name: UI
+    uniqueID: 120173273
     locked: 0

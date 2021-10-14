@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Water4Simple
   m_Shader: {fileID: 4800000, guid: 8aaff0751054e4a9cb4642d01eaf5be9, type: 3}
-  m_ShaderKeywords: []
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -148,7 +150,7 @@ Material:
       data:
         first:
           name: _WorldLightDir
-        second: {r: .0139923692, g: -.173590809, b: -.984718621, a: 0}
+        second: {r: .0139924288, g: -.173590809, b: -.984718621, a: 0}
       data:
         first:
           name: _Foam
@@ -156,7 +158,7 @@ Material:
       data:
         first:
           name: _GAmplitude
-        second: {r: .300000012, g: .200000003, b: .25, a: .25}
+        second: {r: .200000003, g: .100000001, b: .200000003, a: .200000003}
       data:
         first:
           name: _GFrequency
@@ -168,11 +170,11 @@ Material:
       data:
         first:
           name: _GSpeed
-        second: {r: 4, g: 2, b: 1, a: 1}
+        second: {r: 3.21000004, g: 1, b: 1, a: 1}
       data:
         first:
           name: _GDirectionAB
-        second: {r: .850000024, g: .300000012, b: .25, a: .25}
+        second: {r: .850000024, g: .150000006, b: .25, a: 1.75}
       data:
         first:
           name: _GDirectionCD
