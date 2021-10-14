@@ -69310,6 +69310,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 68e335678897794468752a1ba5b9cbbc, type: 3}
   - {fileID: 8300000, guid: 847730bb3eeb245b3a49862fa9ca3633, type: 3}
   - {fileID: 8300000, guid: 602332d67d338504dbbef516ef367e52, type: 3}
+  - {fileID: 8300000, guid: 0ec2423d090ba1c40a42e728e5ee5760, type: 3}
 --- !u!4 &1844133834
 Transform:
   m_ObjectHideFlags: 0
@@ -70523,7 +70524,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886108708}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fc8bc99a5ba25cf4fb24b6e989b10a0e, type: 3}

@@ -44,6 +44,7 @@ public class Teleport : MonoBehaviour
                 //line.gameObject.SetActive(true);
                 lighting.gameObject.SetActive(true);
                 SoundManager.soundManager.PlaySFX(SoundManager.SFX.Electric);
+
                 //¿Ş¼ÕÀ§Ä¡, ºÎµúÈùÀ§Ä¡±îÁö LineÀ» ±×¸°´Ù
                 //0 : ¿Ş¼ÕÀ§Ä¡, 1 : ºÎµúÈùÀ§Ä¡
                 //line.DrawLine(trLeft.position, hit.point);
@@ -104,6 +105,7 @@ public class Teleport : MonoBehaviour
         {
             RecoverAction(10);
             Destroy(other.gameObject);
+            SoundManager.soundManager.PlaySFX(SoundManager.SFX.EnergyBar);
 
             print(energy);
         }

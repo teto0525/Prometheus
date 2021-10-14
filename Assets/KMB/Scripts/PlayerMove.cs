@@ -83,7 +83,7 @@ public class PlayerMove : MonoBehaviour
         if (other.tag == ("AttackPoint"))
         {
             DamangeAction(5);
-
+         
             print(hp);
         }
 
@@ -91,6 +91,7 @@ public class PlayerMove : MonoBehaviour
         {
             RecoverAction(10);
             Destroy(other.gameObject);
+            SoundManager.soundManager.PlaySFX(SoundManager.SFX.EnergyBar);
 
             print(hp);
         }
@@ -125,6 +126,7 @@ public class PlayerMove : MonoBehaviour
 
         //2-1 이동방향을 설정한다. 
         dir = Camera.main.transform.TransformDirection(dir);
+       
 
         //2-2 만일 바닥에 착지했다면
         if (cc.collisionFlags == CollisionFlags.Below)
@@ -153,6 +155,7 @@ public class PlayerMove : MonoBehaviour
 
         //3. 이동속도에 맞춰 이동한다. 
         cc.Move(dir * moveSpeed * Time.deltaTime);
+        
 
         //4. 현재 플레이어 hp(%)를 hp 슬라이더의 value에 반영한다. 
         hpSlider.value = (float)hp / (float)maxHP;
