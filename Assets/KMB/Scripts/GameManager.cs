@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     float currTime;
-
     float createTime;
 
     //게임 상태 UI 변수
@@ -106,6 +105,11 @@ public class GameManager : MonoBehaviour
 
         //플레이어 오브젝트를 찾은 수 플레이어의 PlayerMove 컴포넌트 받아오기
         player = GameObject.Find("Player").GetComponent<PlayerMove>();
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Beta");
     }
 
     IEnumerator ReadyToStart()
