@@ -38,6 +38,10 @@ public class TypeWriterEffect : MonoBehaviour
     //모든 텍스트 호출완료시 탈출
     void Update()
     {
+        if(OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        {
+            End_Typing();
+        }
         if(text_exit==true)
         {
             SampleManager.sm.OnCompleteDialog();

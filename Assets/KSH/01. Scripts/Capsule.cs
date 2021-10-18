@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Capsule : MonoBehaviour
 {
-    public int questId;
     // Start is called before the first frame update
     void Start()
     {

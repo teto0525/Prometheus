@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     // 레이캐스트
     private Ray ray;
     private RaycastHit hit;
-    // int layerMask = 1 << LayerMask.NameToLayer("Capsule");
+    int layerMask;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
     public float hp = 100;
 
     //최대 체력변수
-    float maxHP = 100;
+    public float maxHP = 100;
 
     //hp 슬라이더 변수 
     public Slider hpSlider;
@@ -57,6 +57,8 @@ public class PlayerMove : MonoBehaviour
     {
         //캐릭터 콘트롤러 컴포넌트를 받아오기
         cc = GetComponent<CharacterController>();
+
+        layerMask = 1 << LayerMask.NameToLayer("Capsule");
     }
 
 
@@ -161,17 +163,17 @@ public class PlayerMove : MonoBehaviour
         hpSlider.value = (float)hp / (float)maxHP;
 
         ///* KSH 수정사항 */
-        //if (SampleManager.sm.popUps != null)
-        //{
-        //    ray = new Ray(transform.position, transform.forward);
-        //    ; if (Physics.Raycast(ray, out hit, 100, layerMask))
-        //    {
+        if (SampleManager.sm.popUps != null)
+        {
+            ray = new Ray(transform.position, transform.forward);
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
+            {
 
-        //        // 이미지 순서대로 SetActive
-        //        SampleManager.sm.PopUps();
-        //        // 이미지 SetActive 한 뒤로 해당 capsule 레이어 이름 바꿔주기
-        //        layerMask = LayerMask.NameToLayer("Default");
-        //    }
-        //}
+                // 이미지 순서대로 SetActive
+                SampleManager.sm.PopUps();
+                // 이미지 SetActive 한 뒤로 해당 capsule 레이어 이름 바꿔주기
+                hit.transform.gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+        }
     }
 }

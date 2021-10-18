@@ -22,7 +22,7 @@ public class SampleManager : MonoBehaviour
     private int index = 0;
 
     // Bool ¼±¾ð
-    // private bool Animal = false;
+    public bool setPopup = false;
 
     // Start is called before the first frame update;
     void Start()
@@ -32,6 +32,7 @@ public class SampleManager : MonoBehaviour
 
     private void Initialized()
     {
+        setPopup = true;
        index = 0;
        popUps[index].gameObject.SetActive(true);
     }
@@ -42,6 +43,7 @@ public class SampleManager : MonoBehaviour
         newIndex %= popUps.Length;
 
         popUps[newIndex].gameObject.SetActive(true);
+        setPopup = true;
 
         index = newIndex;
     }

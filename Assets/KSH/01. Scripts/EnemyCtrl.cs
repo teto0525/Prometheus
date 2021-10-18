@@ -71,7 +71,19 @@ public class EnemyCtrl : MonoBehaviour
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;
+
         }
+        // SampleManager의 팝업이 실행중일때 
+        if (SampleManager.sm.setPopup == true)
+        {
+            state = State.Idle;
+        }
+
+        //if (SampleManager.sm.setPopup == true)
+        //{
+        //    agent.isStopped = true;
+        //}
+        //return;
     }
 
 

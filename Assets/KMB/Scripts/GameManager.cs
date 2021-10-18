@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ReadyToStart()
     {
         //2초간 대기한다.. 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
 
         //상태 텍스트의 내용을 "Go!"로 한다. 
         gameText.text = "Go!";
@@ -170,7 +170,17 @@ public class GameManager : MonoBehaviour
             //상태를 '게임오버' 상태로 변경한다. 
 
             gState = GameState.GameOver;
+
+            StartCoroutine(delay());
+
         }
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("Opening");
+
     }
 }
 
