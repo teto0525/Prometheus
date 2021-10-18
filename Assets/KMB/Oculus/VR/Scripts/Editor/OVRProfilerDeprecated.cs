@@ -10,4 +10,24 @@ ANY KIND, either express or implied. See the License for the specific language g
 permissions and limitations under the License.
 ************************************************************************************/
 
-// Moved to /Scripts/Editor. This stub only exists to overwrite previous instances of OVRProfiler.
+#if UNITY_EDITOR
+
+using UnityEngine;
+using UnityEditor;
+using System.Collections.Generic;
+using Assets.OVR.Scripts;
+
+public class OVRProfilerDeprecated : EditorWindow
+{
+	[MenuItem("Oculus/Tools/(Deprecated) OVR Profiler", false, 200000)]
+	static void Init()
+	{
+		Debug.LogWarning("OVR Profiler has been replaced by OVR Performance Lint Tool");
+		// Get existing open window or if none, make a new one:
+		EditorWindow.GetWindow(typeof(OVRLint));
+		OVRPlugin.SendEvent("perf_lint", "activated");
+		OVRLint.RunCheck();
+	}
+}
+
+#endif
