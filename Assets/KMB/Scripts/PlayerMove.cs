@@ -79,11 +79,13 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+      
         if (other.tag == ("AttackPoint"))
         {
             DamangeAction(5);
-         
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+
             print(hp);
         }
 
@@ -108,6 +110,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
             return;

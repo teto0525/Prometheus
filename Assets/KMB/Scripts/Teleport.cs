@@ -33,7 +33,7 @@ public class Teleport : MonoBehaviour
     {
 
         //만약에 왼손의 트리거버튼을 누르고 있으면
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
         {
             //왼손위치, 왼손 앞방향에서 나가는 Ray만든다
             Ray ray = new Ray(trLeft.position, trLeft.forward);
@@ -54,7 +54,7 @@ public class Teleport : MonoBehaviour
                 //부딪힌 위치를 잠시 저장
                 movePoint = hit.point;
 
-                DamageAction(0.5f);
+                DamageAction(0.1f);
 
                 //만약에 맞은놈이 에너미라면
                 if (hit.transform.tag == "Enemy")
